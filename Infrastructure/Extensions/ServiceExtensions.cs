@@ -19,7 +19,7 @@ namespace jobPortalAPI.Infrastructure.Extensions
         {
             // Database Connection
             services.AddDbContext<DataDbContext>(opt => 
-                opt.UseNpgsql(config.GetConnectionString("DbConnection")));
+                opt.UseSqlServer(config.GetConnectionString("DbConnection")));
             
 
             // NewtonsoftJson and Policy

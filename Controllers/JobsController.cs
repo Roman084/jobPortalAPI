@@ -10,7 +10,7 @@ namespace jobPortalAPI.Controllers
     [AllowAnonymous]
     [ApiController]
     [Route("api/[controller]")]
-    public class JobsController : ControllerBase
+    public class JobsController : BaseApiController
     {
         private readonly IJobService _jobService;
         private readonly IRecurringJobManager _recurringJobManager;
@@ -25,15 +25,15 @@ namespace jobPortalAPI.Controllers
         public async Task<ActionResult> GetAll()
         {
             var jobs = await _jobService.GetAll();
-            return Ok(new { data = jobs });
+            return Ok(jobs);
         }
         
         
         [HttpGet("{id}")]
-        public async Task<ActionResult> GetById(Guid id)
+        public async Task<IActionResult> GetById(Guid id)
         {
             var job = await _jobService.GetById(id);
-            return Ok(new { data = job });
+            return HandleResult(job);
         }
         
         

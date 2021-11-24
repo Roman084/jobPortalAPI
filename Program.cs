@@ -19,6 +19,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseSwagger();
+app.UseSwaggerUI();
+
 app.UseHangfireDashboard("/hangfire", new DashboardOptions
 {
     // IsReadOnlyFunc = (DashboardContext context) => true,

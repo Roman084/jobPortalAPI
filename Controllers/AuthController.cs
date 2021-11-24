@@ -5,7 +5,7 @@ namespace jobPortalAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AuthController : ControllerBase
+    public class AuthController : BaseApiController
     {
 
         [HttpPost("Register")]

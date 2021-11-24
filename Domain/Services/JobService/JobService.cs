@@ -9,6 +9,7 @@ using jobPortalAPI.Data;
 using jobPortalAPI.Data.Entities;
 using jobPortalAPI.Domain.Models;
 using jobPortalAPI.Domain.Models.JobPostModels;
+using jobPortalAPI.Domain.Models.Result;
 using Microsoft.EntityFrameworkCore;
 
 namespace jobPortalAPI.Domain.Services
@@ -51,9 +52,9 @@ namespace jobPortalAPI.Domain.Services
                 .ToListAsync();
         }
 
-        public async Task<JobPost> GetById(Guid id)
+        public async Task<Result<JobPost>> GetById(Guid id)
         {
-            return await _dbContext.JobPost
+            var job =  await _dbContext.JobPost
                 .Include(j => j.JobPostAddress)
                 .Include(j => j.JobPostTooleasumine)
                 .Include(j => j.JobPostCategory)
@@ -65,6 +66,7 @@ namespace jobPortalAPI.Domain.Services
                 .Include(j => j.JobPostJuhiluba)
                 .Include(j => j.JobPostDocuments)
                 .FirstOrDefaultAsync(job => job.Id == id);
+            return Result<JobPost>.Success(job);
         }
 
 
